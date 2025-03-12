@@ -9,7 +9,7 @@ redirect_from:
 
 About
 ======
-I am a research seismologist at the University of Oxford. Many of my projects rely on code written in MATLAB, Julia or Python. Some of my code can be found at [GitHub repo.]([https://pages.github.com](https://github.com/TMackay-Champion)).
+I am a research seismologist at the University of Oxford. Many of my projects rely on code written in MATLAB, Julia or Python. Some of my code can be found on my [GitHub page]([https://pages.github.com](https://github.com/TMackay-Champion)).
 
 Interests
 ======
