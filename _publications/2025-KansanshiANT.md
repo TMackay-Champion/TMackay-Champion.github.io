@@ -7,5 +7,5 @@ excerpt: '------'
 date: 2025-03-17
 authors: "T Mackay-Champion, N Harmon, S Mutelekesha, M Chanda, T Hudson, J-M Kendall, M C Daly"
 venue: 'GEOPHYSICS (to be submitted imminently)'
-pdfurl: 'http://tmackay-champion.github.io/files/KansanshiANT_manuscript.pdf'
+pdfurl: 'http://tmackay-champion.github.io/files/KansanshiANT_25.pdf'
 ---
