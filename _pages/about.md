@@ -21,3 +21,6 @@ I have experience with:
 ## Tools
 Many of my projects rely on code written in MATLAB, Julia or Python. Some of my code can be found on my [GitHub page]([https://pages.github.com](https://github.com/TMackay-Champion)).
 
+## Projects
+- [Copper Basin Exploration Science](https://cubes-zambia.github.io)
+
