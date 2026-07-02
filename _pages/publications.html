@@ -1,155 +1,87 @@
 ---
-
 layout: archive
 title: "Publications"
 permalink: /publications/
 author_profile: true
---------------------
-
-{% if site.author.googlescholar %}
-
-  <div class="pub-scholar-note">
-    You can also find my articles on <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.
-  </div>
-{% endif %}
+---
 
 {% include base_path %}
 
+{% if site.author.googlescholar %}
+<div class="pub-scholar-note">
+  You can also find my articles on
+  <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.
+</div>
+{% endif %}
+
 <style>
-.pub-scholar-note {
-  margin: 0 0 1rem 0;
-  font-size: 0.95rem;
-  line-height: 1.45;
-}
-
-.archive h1 {
-  margin-bottom: 0.5rem;
-  font-size: 1.8rem;
-}
-
-.archive h2 {
-  margin-top: 1.6rem;
-  margin-bottom: 0.6rem;
-  font-size: 1.15rem;
-  font-weight: 600;
-}
-
-.archive hr {
-  margin: 0.25rem 0 0.9rem 0;
-}
-
-.pub-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.pub-item {
-  margin: 0 0 1rem 0;
-  padding: 0;
-  line-height: 1.4;
-}
-
-.pub-title {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.15rem;
-}
-
-.pub-meta {
-  font-size: 0.92rem;
-  color: #444;
-  margin-bottom: 0.1rem;
-}
-
-.pub-links {
-  font-size: 0.88rem;
-  color: #666;
-}
-
-.pub-links a {
-  margin-right: 0.6rem;
-}
-
-.pub-links a:last-child {
-  margin-right: 0;
-}
+.pub-scholar-note { margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.45; }
+.archive h1 { margin-bottom: 0.5rem; font-size: 1.8rem; }
+.archive h2 { margin-top: 1.6rem; margin-bottom: 0.6rem; font-size: 1.15rem; font-weight: 600; }
+.archive hr { margin: 0.25rem 0 0.9rem 0; }
+.pub-list { list-style: none; padding-left: 0; margin: 0; }
+.pub-item { margin: 0 0 1rem 0; line-height: 1.4; }
+.pub-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.15rem; }
+.pub-meta { font-size: 0.92rem; color: #444; margin-bottom: 0.1rem; }
+.pub-links { font-size: 0.88rem; color: #666; }
+.pub-links a { margin-right: 0.6rem; }
+.pub-links a:last-child { margin-right: 0; }
 </style>
 
 {% if site.publication_category %}
-{% for category in site.publication_category %}
-{% assign title_shown = false %} <section class="pub-section">
-{% for post in site.publications reversed %}
-{% if post.category != category[0] %}
-{% continue %}
-{% endif %}
+  {% for category in site.publication_category %}
+    {% comment %} Filter posts for this category first to avoid layout bugs {% endcomment %}
+    {% assign cat_id = category[0] %}
+    {% assign cat_title = category[1].title %}
+    {% assign cat_posts = site.publications | where: "category", cat_id %}
 
-```
-    {% unless title_shown %}
-      <h2>{{ category[1].title }}</h2>
-      {% assign title_shown = true %}
-      <ul class="pub-list">
-    {% endunless %}
-
-    <li class="pub-item">
-      <div class="pub-title">
-        {% if post.link %}
-          <a href="{{ post.link }}">{{ post.title }}</a>
-        {% else %}
-          {{ post.title }}
-        {% endif %}
-      </div>
-
-      <div class="pub-meta">
-        {% if post.authors %}{{ post.authors }}.{% endif %}
-        {% if post.venue %} <em>{{ post.venue }}</em>.{% endif %}
-        {% if post.year %} {{ post.year }}.{% endif %}
-      </div>
-
-      <div class="pub-links">
-        {% if post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
-        {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
-        {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
-        {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
-      </div>
-    </li>
+    {% if cat_posts.size > 0 %}
+      <section class="pub-section">
+        <h2>{{ cat_title }}</h2>
+        <ul class="pub-list">
+          {% for post in cat_posts reversed %}
+            <li class="pub-item">
+              <div class="pub-title">
+                {% if post.link %}<a href="{{ post.link }}">{{ post.title }}</a>{% else %}{{ post.title }}{% endif %}
+              </div>
+              <div class="pub-meta">
+                {% if post.authors %}{{ post.authors }}.{% endif %}
+                {% if post.venue %} <em>{{ post.venue }}</em>.{% endif %}
+                {% if post.year %} {{ post.year }}.{% endif %}
+              </div>
+              <div class="pub-links">
+                {% if post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
+                {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
+                {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
+                {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
   {% endfor %}
-  {% if title_shown %}
-    </ul>
-  {% endif %}
-</section>
-```
 
-{% endfor %}
 {% else %}
 
   <ul class="pub-list">
     {% for post in site.publications reversed %}
       <li class="pub-item">
         <div class="pub-title">
-          {% if post.link %}
-            <a href="{{ post.link }}">{{ post.title }}</a>
-          {% else %}
-            {{ post.title }}
-          {% endif %}
+          {% if post.link %}<a href="{{ post.link }}">{{ post.title }}</a>{% else %}{{ post.title }}{% endif %}
         </div>
-
-```
-    <div class="pub-meta">
-      {% if post.authors %}{{ post.authors }}.{% endif %}
-      {% if post.venue %} <em>{{ post.venue }}</em>.{% endif %}
-      {% if post.year %} {{ post.year }}.{% endif %}
-    </div>
-
-    <div class="pub-links">
-      {% if post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
-      {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
-      {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
-      {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
-    </div>
-  </li>
-{% endfor %}
-```
-
+        <div class="pub-meta">
+          {% if post.authors %}{{ post.authors }}.{% endif %}
+          {% if post.venue %} <em>{{ post.venue }}</em>.{% endif %}
+          {% if post.year %} {{ post.year }}.{% endif %}
+        </div>
+        <div class="pub-links">
+          {% if post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
+          {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
+          {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
+          {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
+        </div>
+      </li>
+    {% endfor %}
   </ul>
 {% endif %}
