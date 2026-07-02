@@ -38,7 +38,7 @@ author_profile: true
 .pub-title a { color: #0056b3; text-decoration: none; }
 .pub-title a:hover { text-decoration: underline; }
 .pub-meta { font-size: 0.92rem; color: #444; margin-bottom: 0.1rem; }
-.pub-meta em { color: #444; font-style: italic; }
+.pub-meta em { color: #000000; font-style: italic; }
 .pub-inline-links { font-size: 0.88rem; color: #666; margin-left: 0.4rem; }
 .pub-inline-links a { margin-right: 0.3rem; color: #0056b3; text-decoration: none; }
 .pub-inline-links a:hover { text-decoration: underline; }
@@ -72,14 +72,14 @@ author_profile: true
                 {% if post.year %} {{ post.year }}.{% endif %}
                 
                 <span class="pub-inline-links">
-                  {% capture links %}
-                    {% if post.paperurl %}<a href="{{ post.paperurl }}">Paper</a>{% elsif post.link %}<a href="{{ post.link }}">Link</a>{% endif %}
-                    {% if post.pdfurl %}<a href="{{ post.pdfurl }}">PDF</a>{% elsif post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
-                    {% if post.codeurl %}<a href="{{ post.codeurl }}">Code</a>{% endif %}
-                    {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
-                    {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
-                    {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
-                  {% endcapture %}
+                  {% capture links -%}
+                    {%- if post.paperurl -%}<a href="{{ post.paperurl }}">Paper</a>{%- elif post.link -%}<a href="{{ post.link }}">Link</a>{%- endif -%}
+                    {%- if post.pdfurl -%}<a href="{{ post.pdfurl }}">PDF</a>{%- elif post.pdf -%}<a href="{{ post.pdf }}">PDF</a>{%- endif -%}
+                    {%- if post.codeurl -%}<a href="{{ post.codeurl }}">Code</a>{%- endif -%}
+                    {%- if post.doi -%}<a href="{{ post.doi }}">DOI</a>{%- endif -%}
+                    {%- if post.cite -%}<a href="{{ post.cite }}">Cite</a>{%- endif -%}
+                    {%- if post.slides -%}<a href="{{ post.slides }}">Slides</a>{%- endif -%}
+                  {%- endcapture %}
                   {% assign links_trimmed = links | strip | replace: "><", ">, <" %}
                   {% if links_trimmed != "" %}[{{ links_trimmed }}]{% endif %}
                 </span>
@@ -111,14 +111,14 @@ author_profile: true
           {% if post.year %} {{ post.year }}.{% endif %}
           
           <span class="pub-inline-links">
-            {% capture links %}
-              {% if post.paperurl %}<a href="{{ post.paperurl }}">Paper</a>{% elsif post.link %}<a href="{{ post.link }}">Link</a>{% endif %}
-              {% if post.pdfurl %}<a href="{{ post.pdfurl }}">PDF</a>{% elsif post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
-              {% if post.codeurl %}<a href="{{ post.codeurl }}">Code</a>{% endif %}
-              {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
-              {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
-              {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
-            {% endcapture %}
+            {% capture links -%}
+              {%- if post.paperurl -%}<a href="{{ post.paperurl }}">Paper</a>{%- elif post.link -%}<a href="{{ post.link }}">Link</a>{%- endif -%}
+              {%- if post.pdfurl -%}<a href="{{ post.pdfurl }}">PDF</a>{%- elif post.pdf -%}<a href="{{ post.pdf }}">PDF</a>{%- endif -%}
+              {%- if post.codeurl -%}<a href="{{ post.codeurl }}">Code</a>{%- endif -%}
+              {%- if post.doi -%}<a href="{{ post.doi }}">DOI</a>{%- endif -%}
+              {%- if post.cite -%}<a href="{{ post.cite }}">Cite</a>{%- endif -%}
+              {%- if post.slides -%}<a href="{{ post.slides }}">Slides</a>{%- endif -%}
+            {%- endcapture %}
             {% assign links_trimmed = links | strip | replace: "><", ">, <" %}
             {% if links_trimmed != "" %}[{{ links_trimmed }}]{% endif %}
           </span>
