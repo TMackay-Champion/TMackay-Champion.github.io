@@ -7,21 +7,36 @@ author_profile: true
 
 {% include base_path %}
 
-{% if site.author.googlescholar %}
-<div class="pub-scholar-note">
-  You can also find my articles on
-  <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.
+<div class="pub-disclaimer">
+  This page was last updated on July 2026. For a more up-to-date list, please see my 
+  <a href="https://scholar.google.com/citations?hl=en&user=im7docoAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">Google Scholar profile</a>.
 </div>
-{% endif %}
 
 <style>
-.pub-scholar-note { margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.45; }
+.pub-disclaimer { 
+  margin: 0 0 1.5rem 0; 
+  font-size: 0.95rem; 
+  line-height: 1.45; 
+  padding: 0.75rem 1rem;
+  background-color: #f4f7f9;
+  border-left: 4px solid #0056b3;
+  border-radius: 4px;
+}
 .archive h1 { margin-bottom: 0.5rem; font-size: 1.8rem; }
-.archive h2 { margin-top: 1.6rem; margin-bottom: 0.6rem; font-size: 1.15rem; font-weight: 600; }
-.archive hr { margin: 0.25rem 0 0.9rem 0; }
+.archive h2 { 
+  margin-top: 2rem; 
+  margin-bottom: 0.8rem; 
+  font-size: 1.3rem; 
+  font-weight: 700; 
+  color: #0056b3; /* Noticeable blue color */
+  border-bottom: 1px solid #e1e8ed;
+  padding-bottom: 0.25rem;
+}
 .pub-list { list-style: none; padding-left: 0; margin: 0; }
-.pub-item { margin: 0 0 1rem 0; line-height: 1.4; }
-.pub-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.15rem; }
+.pub-item { margin: 0 0 1.25rem 0; line-height: 1.4; }
+.pub-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.2rem; }
+.pub-title a { color: #0056b3; text-decoration: none; }
+.pub-title a:hover { text-decoration: underline; }
 .pub-meta { font-size: 0.92rem; color: #444; margin-bottom: 0.1rem; }
 .pub-links { font-size: 0.88rem; color: #666; }
 .pub-links a { margin-right: 0.6rem; }
@@ -30,7 +45,6 @@ author_profile: true
 
 {% if site.publication_category %}
   {% for category in site.publication_category %}
-    {% comment %} Filter posts for this category first to avoid layout bugs {% endcomment %}
     {% assign cat_id = category[0] %}
     {% assign cat_title = category[1].title %}
     {% assign cat_posts = site.publications | where: "category", cat_id %}
@@ -42,7 +56,11 @@ author_profile: true
           {% for post in cat_posts reversed %}
             <li class="pub-item">
               <div class="pub-title">
-                {% if post.link %}<a href="{{ post.link }}">{{ post.title }}</a>{% else %}{{ post.title }}{% endif %}
+                {% if post.link or post.pdf or post.doi %}
+                  <a href="{{ post.link | default: post.pdf | default: post.doi }}">{{ post.title }}</a>
+                {% else %}
+                  {{ post.title }}
+                {% endif %}
               </div>
               <div class="pub-meta">
                 {% if post.authors %}{{ post.authors }}.{% endif %}
@@ -68,7 +86,11 @@ author_profile: true
     {% for post in site.publications reversed %}
       <li class="pub-item">
         <div class="pub-title">
-          {% if post.link %}<a href="{{ post.link }}">{{ post.title }}</a>{% else %}{{ post.title }}{% endif %}
+          {% if post.link or post.pdf or post.doi %}
+            <a href="{{ post.link | default: post.pdf | default: post.doi }}">{{ post.title }}</a>
+          {% else %}
+            {{ post.title }}
+          {% endif %}
         </div>
         <div class="pub-meta">
           {% if post.authors %}{{ post.authors }}.{% endif %}
