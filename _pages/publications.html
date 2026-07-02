@@ -9,7 +9,7 @@ author_profile: true
 
 <div class="pub-disclaimer">
   This page was last updated on {{ site.time | date: "%B %Y" }}. For a more up-to-date list, please see my 
-  <a href="https://scholar.google.com/citations?hl=en&user=im7docoAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">Google Scholar profile</a>.
+  <a href="https://google.com" target="_blank">Google Scholar profile</a>.
 </div>
 
 <style>
@@ -28,7 +28,7 @@ author_profile: true
   margin-bottom: 0.8rem; 
   font-size: 1.3rem; 
   font-weight: 700; 
-  color: #0056b3; /* Noticeable blue color */
+  color: #0056b3; 
   border-bottom: 1px solid #e1e8ed;
   padding-bottom: 0.25rem;
 }
@@ -38,10 +38,11 @@ author_profile: true
 .pub-title a { color: #0056b3; text-decoration: none; }
 .pub-title a:hover { text-decoration: underline; }
 .pub-meta { font-size: 0.92rem; color: #444; margin-bottom: 0.1rem; }
-.pub-meta em { color: #444; font-style: italic; } /* Forces journal titles to match meta text colour */
-.pub-links { font-size: 0.88rem; color: #666; }
-.pub-links a { margin-right: 0.6rem; }
-.pub-links a:last-child { margin-right: 0; }
+.pub-meta em { color: #444; font-style: italic; }
+.pub-inline-links { font-size: 0.88rem; color: #666; margin-left: 0.4rem; }
+.pub-inline-links a { margin-right: 0.3rem; color: #0056b3; text-decoration: none; }
+.pub-inline-links a:hover { text-decoration: underline; }
+.pub-inline-links a:last-child { margin-right: 0; }
 </style>
 
 {% if site.publication_category %}
@@ -64,17 +65,24 @@ author_profile: true
                 {% endif %}
               </div>
               <div class="pub-meta">
-                {% if post.authors %}{{ post.authors }}.{% endif %}
+                {% if post.authors %}
+                  {{ post.authors | replace: "T Mackay-Champion", "<strong>T Mackay-Champion</strong>" }}.
+                {% endif %}
                 {% if post.venue %} <em>{{ post.venue }}</em>.{% endif %}
                 {% if post.year %} {{ post.year }}.{% endif %}
-              </div>
-              <div class="pub-links">
-                {% if post.pdfurl %}<a href="{{ post.pdfurl }}">PDF</a>{% elsif post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
-                {% if post.paperurl %}<a href="{{ post.paperurl }}">Paper</a>{% elsif post.link %}<a href="{{ post.link }}">Link</a>{% endif %}
-                {% if post.codeurl %}<a href="{{ post.codeurl }}">Code</a>{% endif %}
-                {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
-                {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
-                {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
+                
+                <span class="pub-inline-links">
+                  {% capture links %}
+                    {% if post.paperurl %}<a href="{{ post.paperurl }}">Paper</a>{% elsif post.link %}<a href="{{ post.link }}">Link</a>{% endif %}
+                    {% if post.pdfurl %}<a href="{{ post.pdfurl }}">PDF</a>{% elsif post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
+                    {% if post.codeurl %}<a href="{{ post.codeurl }}">Code</a>{% endif %}
+                    {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
+                    {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
+                    {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
+                  {% endcapture %}
+                  {% assign links_trimmed = links | strip | replace: "><", ">, <" %}
+                  {% if links_trimmed != "" %}[{{ links_trimmed }}]{% endif %}
+                </span>
               </div>
             </li>
           {% endfor %}
@@ -96,17 +104,24 @@ author_profile: true
           {% endif %}
         </div>
         <div class="pub-meta">
-          {% if post.authors %}{{ post.authors }}.{% endif %}
+          {% if post.authors %}
+            {{ post.authors | replace: "T Mackay-Champion", "<strong>T Mackay-Champion</strong>" }}.
+          {% endif %}
           {% if post.venue %} <em>{{ post.venue }}</em>.{% endif %}
           {% if post.year %} {{ post.year }}.{% endif %}
-        </div>
-        <div class="pub-links">
-          {% if post.pdfurl %}<a href="{{ post.pdfurl }}">PDF</a>{% elsif post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
-          {% if post.paperurl %}<a href="{{ post.paperurl }}">Paper</a>{% elsif post.link %}<a href="{{ post.link }}">Link</a>{% endif %}
-          {% if post.codeurl %}<a href="{{ post.codeurl }}">Code</a>{% endif %}
-          {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
-          {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
-          {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
+          
+          <span class="pub-inline-links">
+            {% capture links %}
+              {% if post.paperurl %}<a href="{{ post.paperurl }}">Paper</a>{% elsif post.link %}<a href="{{ post.link }}">Link</a>{% endif %}
+              {% if post.pdfurl %}<a href="{{ post.pdfurl }}">PDF</a>{% elsif post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
+              {% if post.codeurl %}<a href="{{ post.codeurl }}">Code</a>{% endif %}
+              {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
+              {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
+              {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
+            {% endcapture %}
+            {% assign links_trimmed = links | strip | replace: "><", ">, <" %}
+            {% if links_trimmed != "" %}[{{ links_trimmed }}]{% endif %}
+          </span>
         </div>
       </li>
     {% endfor %}
