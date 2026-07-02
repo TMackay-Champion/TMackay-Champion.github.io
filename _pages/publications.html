@@ -56,8 +56,8 @@ author_profile: true
           {% for post in cat_posts reversed %}
             <li class="pub-item">
               <div class="pub-title">
-                {% if post.link or post.pdf or post.doi %}
-                  <a href="{{ post.link | default: post.pdf | default: post.doi }}">{{ post.title }}</a>
+                {% if post.paperurl or post.pdfurl or post.link or post.pdf or post.doi %}
+                  <a href="{{ post.paperurl | default: post.pdfurl | default: post.link | default: post.pdf | default: post.doi }}">{{ post.title }}</a>
                 {% else %}
                   {{ post.title }}
                 {% endif %}
@@ -68,7 +68,9 @@ author_profile: true
                 {% if post.year %} {{ post.year }}.{% endif %}
               </div>
               <div class="pub-links">
-                {% if post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
+                {% if post.pdfurl %}<a href="{{ post.pdfurl }}">PDF</a>{% elsif post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
+                {% if post.paperurl %}<a href="{{ post.paperurl }}">Paper</a>{% elsif post.link %}<a href="{{ post.link }}">Link</a>{% endif %}
+                {% if post.codeurl %}<a href="{{ post.codeurl }}">Code</a>{% endif %}
                 {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
                 {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
                 {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
@@ -86,8 +88,8 @@ author_profile: true
     {% for post in site.publications reversed %}
       <li class="pub-item">
         <div class="pub-title">
-          {% if post.link or post.pdf or post.doi %}
-            <a href="{{ post.link | default: post.pdf | default: post.doi }}">{{ post.title }}</a>
+          {% if post.paperurl or post.pdfurl or post.link or post.pdf or post.doi %}
+            <a href="{{ post.paperurl | default: post.pdfurl | default: post.link | default: post.pdf | default: post.doi }}">{{ post.title }}</a>
           {% else %}
             {{ post.title }}
           {% endif %}
@@ -98,7 +100,9 @@ author_profile: true
           {% if post.year %} {{ post.year }}.{% endif %}
         </div>
         <div class="pub-links">
-          {% if post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
+          {% if post.pdfurl %}<a href="{{ post.pdfurl }}">PDF</a>{% elsif post.pdf %}<a href="{{ post.pdf }}">PDF</a>{% endif %}
+          {% if post.paperurl %}<a href="{{ post.paperurl }}">Paper</a>{% elsif post.link %}<a href="{{ post.link }}">Link</a>{% endif %}
+          {% if post.codeurl %}<a href="{{ post.codeurl }}">Code</a>{% endif %}
           {% if post.doi %}<a href="{{ post.doi }}">DOI</a>{% endif %}
           {% if post.cite %}<a href="{{ post.cite }}">Cite</a>{% endif %}
           {% if post.slides %}<a href="{{ post.slides }}">Slides</a>{% endif %}
