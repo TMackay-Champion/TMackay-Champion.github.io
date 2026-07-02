@@ -73,16 +73,6 @@ author_profile: true
                 
                 <span class="pub-inline-links">
                   {% capture links -%}
-                    {%- if post.paperurl -%}
-                      <a href="{{ post.paperurl }}">Paper</a>
-                    {%- else -%}
-                      {%- if post.link -%}<a href="{{ post.link }}">Link</a>{%- endif -%}
-                    {%- endif -%}
-                    {%- if post.pdfurl -%}
-                      <a href="{{ post.pdfurl }}">PDF</a>
-                    {%- else -%}
-                      {%- if post.pdf -%}<a href="{{ post.pdf }}">PDF</a>{%- endif -%}
-                    {%- endif -%}
                     {%- if post.codeurl -%}<a href="{{ post.codeurl }}">Code</a>{%- endif -%}
                     {%- if post.doi -%}<a href="{{ post.doi }}">DOI</a>{%- endif -%}
                     {%- if post.cite -%}<a href="{{ post.cite }}">Cite</a>{%- endif -%}
@@ -120,16 +110,6 @@ author_profile: true
           
           <span class="pub-inline-links">
             {% capture links -%}
-              {%- if post.paperurl -%}
-                <a href="{{ post.paperurl }}">Paper</a>
-              {%- else -%}
-                {%- if post.link -%}<a href="{{ post.link }}">Link</a>{%- endif -%}
-              {%- endif -%}
-              {%- if post.pdfurl -%}
-                <a href="{{ post.pdfurl }}">PDF</a>
-              {%- else -%}
-                {%- if post.pdf -%}<a href="{{ post.pdf }}">PDF</a>{%- endif -%}
-              {%- endif -%}
               {%- if post.codeurl -%}<a href="{{ post.codeurl }}">Code</a>{%- endif -%}
               {%- if post.doi -%}<a href="{{ post.doi }}">DOI</a>{%- endif -%}
               {%- if post.cite -%}<a href="{{ post.cite }}">Cite</a>{%- endif -%}
