@@ -11,6 +11,7 @@ I am a research seismologist at the University of Bristol, with a visiting resea
 
 ## Research highlights
 - Seismic evidence for a melt-depleted lower crust and transcrustal magmatism on Mars; [Nature Astronomy](https://www.nature.com/articles/s41550-026-02907-5)
+- Ambient Noise Tomography for District-Scale Mineral Exploration Using Nodal MEMS Accelerometers: A Case Study from the Kansanshi Cu-Au Mine, Zambia; [GEOPHYSICS](https://github.com/TMackay-Champion/TMackay-Champion.github.io/blob/master/files/KansanshiANT_AuthorsCopy_low_res_Sept26.pdf)
 - A Himalayan-Scale Orogen in the Central African Copperbelt and the Formation of a World-Class Metal Province; [pre-print](https://doi.org/10.31223/X5NN0V)
 - An Inverse Method for Quantifying Petrological Parameters and Uncertainty in Phase Equilibrium Modelling; [Journal of Metamorphic Geology](https://doi.org/10.1111/jmg.70016)
 
