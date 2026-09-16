@@ -4,7 +4,7 @@ collection: publications
 category: manuscripts
 permalink: /publication/2025-KansanshiANT
 excerpt: '------'
-date: 2026-03-17
+date: 2026-09-09
 authors: "T Mackay-Champion, N Harmon, S Mutelekesha, M Chanda, T Hudson, J-M Kendall, M C Daly"
 venue: 'GEOPHYSICS'
 pdfurl: 'https://tmackay-champion.github.io/files/KansanshiANT_AuthorsCopy_low_res_Sept26.pdf'
